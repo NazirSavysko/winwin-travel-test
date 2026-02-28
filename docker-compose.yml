@@ -4,10 +4,8 @@ services:
     container_name: postgres-db
     ports:
       - "5432:5432"
-    environment:
-      - POSTGRES_USER=user
-      - POSTGRES_PASSWORD=password
-      - POSTGRES_DB=winwin_db
+    env_file:
+      - .env
     volumes:
       - ./postgres-data:/var/lib/postgresql/data
     healthcheck:
@@ -23,13 +21,8 @@ services:
     container_name: auth-api
     ports:
       - "8080:8080"
-    environment:
-      - POSTGRES_URL=jdbc:postgresql://postgres:5432/winwin_db
-      - POSTGRES_USER=user
-      - POSTGRES_PASSWORD=password
-      - INTERNAL_TOKEN=SomeSuperSecretInternalToken
-      - JWT_SECRET=z8pWp3S3fR7kMvN2xQ5yL9tB1aC4dE6g
-      - JWT_EXPIRATION=36000
+    env_file:
+      - .env
     depends_on:
       postgres:
         condition: service_healthy
@@ -41,8 +34,8 @@ services:
     container_name: data-api
     ports:
       - "8081:8081"
-    environment:
-      - INTERNAL_TOKEN=SomeSuperSecretInternalToken
+    env_file:
+      - .env
     networks:
       - win-win
 
