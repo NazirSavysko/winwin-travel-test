@@ -31,6 +31,15 @@ public final class ProcessController {
         final ProcessingResultDTO processingResultDTO = this.processingClient.transform(process.text());
 
         final ProcessingLog processingLog = this.processingLogService.saveProcessingLog(user, process.text(), processingResultDTO.result());
-        return null;
+
+        return ResponseEntity.ok(
+                new ProcessingLogDTO(
+                        processingLog.getId(),
+                        processingLog.getInputText(),
+                        processingLog.getOutputText(),
+                        processingLog.getCreatedAt(),
+                        processingLog.getUser().getId()
+                )
+        );
     }
 }
