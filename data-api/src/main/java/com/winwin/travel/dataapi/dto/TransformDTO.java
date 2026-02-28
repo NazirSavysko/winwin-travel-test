@@ -1,6 +1,6 @@
 package com.winwin.travel.dataapi.dto;
 
-public record ProcessDTO(
+public record TransformDTO(
         String text
 ) {
 }

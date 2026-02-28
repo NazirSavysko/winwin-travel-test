@@ -3,7 +3,10 @@ package com.winwin.travel.authapi.client.impl;
 import com.winwin.travel.authapi.client.ProcessingRestClient;
 import com.winwin.travel.authapi.dto.ProcessingResultDTO;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.MediaType;
 import org.springframework.web.client.RestClient;
+
+import java.util.Map;
 
 @RequiredArgsConstructor
 public final class RestProcessingRestClient implements ProcessingRestClient {
@@ -13,7 +16,9 @@ public final class RestProcessingRestClient implements ProcessingRestClient {
     public ProcessingResultDTO transform(final String text) {
         return restClient
                 .post()
-                .uri("/api/process")
+                .uri("/api/transform")
+                .contentType(MediaType.APPLICATION_JSON)
+                .body((Map.of("text", text)))
                 .retrieve()
                 .body(ProcessingResultDTO.class);
     }

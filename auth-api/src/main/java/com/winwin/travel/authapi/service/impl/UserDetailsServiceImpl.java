@@ -1,8 +1,7 @@
 package com.winwin.travel.authapi.service.impl;
 
-import com.winwin.travel.authapi.model.UserEntity;
+import com.winwin.travel.authapi.model.User;
 import com.winwin.travel.authapi.repository.UserRepository;
-import com.winwin.travel.authapi.service.AuthService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -28,22 +27,22 @@ public final class UserDetailsServiceImpl implements UserDetailsService {
                 .orElseThrow(() -> new UsernameNotFoundException(String.format(USER_NOT_FOUND_MESSAGE, username)));
     }
 
-    private UserDetails map(final UserEntity userEntity) {
+    private UserDetails map(final User user) {
         return new UserDetails() {
 
             @Override
             public Collection<? extends GrantedAuthority> getAuthorities() {
-                return List.of(userEntity.getRole());
+                return List.of(user.getRole());
             }
 
             @Override
             public String getPassword() {
-                return userEntity.getPasswordHash();
+                return user.getPasswordHash();
             }
 
             @Override
             public String getUsername() {
-                return userEntity.getEmail();
+                return user.getEmail();
             }
         };
     }

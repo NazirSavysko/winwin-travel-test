@@ -1,8 +1,8 @@
 package com.winwin.travel.authapi.service;
 
 import com.winwin.travel.authapi.model.ProcessingLog;
-import com.winwin.travel.authapi.model.UserEntity;
+import com.winwin.travel.authapi.model.User;
 
 public interface ProcessingLogService {
-    ProcessingLog saveProcessingLog(UserEntity user, String text, String result);
+    ProcessingLog saveProcessingLog(User user, String text, String result);
 }

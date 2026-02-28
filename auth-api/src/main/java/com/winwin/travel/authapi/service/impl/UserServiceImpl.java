@@ -1,6 +1,6 @@
 package com.winwin.travel.authapi.service.impl;
 
-import com.winwin.travel.authapi.model.UserEntity;
+import com.winwin.travel.authapi.model.User;
 import com.winwin.travel.authapi.repository.UserRepository;
 import com.winwin.travel.authapi.service.UserService;
 import lombok.RequiredArgsConstructor;
@@ -15,7 +15,7 @@ public final class UserServiceImpl implements UserService {
     private final UserRepository userRepository;
 
     @Override
-    public UserEntity findUserByEmail(final String email) {
+    public User findUserByEmail(final String email) {
         return userRepository.findByEmail(email)
                 .orElseThrow(() -> new RuntimeException(String.format(USER_NOT_FOUND_MESSAGE, email)));
     }

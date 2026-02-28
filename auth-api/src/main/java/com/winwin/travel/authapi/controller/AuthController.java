@@ -36,7 +36,7 @@ public final class AuthController {
                 .build();
     }
 
-    @PostMapping("login")
+    @PostMapping("/login")
     public ResponseEntity<TokenDTO> login(final @RequestBody LoginDTO login) {
         final Authentication authentication = this.authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(login.email(), login.password())

@@ -1,12 +1,11 @@
 package com.winwin.travel.authapi.repository;
 
-import com.winwin.travel.authapi.model.UserEntity;
+import com.winwin.travel.authapi.model.User;
 import org.springframework.data.repository.CrudRepository;
 
-import java.lang.ScopedValue;
 import java.util.Optional;
 import java.util.UUID;
 
-public interface UserRepository extends CrudRepository<UserEntity, UUID> {
-    Optional<UserEntity> findByEmail(String email);
+public interface UserRepository extends CrudRepository<User, UUID> {
+    Optional<User> findByEmail(String email);
 }

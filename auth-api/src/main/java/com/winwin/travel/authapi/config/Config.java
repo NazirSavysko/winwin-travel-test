@@ -19,14 +19,27 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.oauth2.jwt.Jwt;
+import org.springframework.security.oauth2.jwt.JwtDecoder;
+import org.springframework.security.oauth2.jwt.NimbusJwtDecoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.web.client.RestClient;
+
+import javax.crypto.SecretKey;
+import javax.crypto.spec.SecretKeySpec;
 
 @Configuration
 @RequiredArgsConstructor
 public class Config {
 
     private final Converter<Jwt, AbstractAuthenticationToken> jwtAuthenticationConverter;
+
+
+    @Bean
+    public JwtDecoder jwtDecoder(final @Value("${jwt.secret}") String secret) {
+        final SecretKey secretKey = new SecretKeySpec(secret.getBytes(), "HmacSHA256");
+
+        return NimbusJwtDecoder.withSecretKey(secretKey).build();
+    }
 
     @Bean
     public SecurityFilterChain securityFilterChain(final HttpSecurity http) throws Exception {
@@ -36,7 +49,7 @@ public class Config {
                 .formLogin(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(auth ->
                         auth
-                                .requestMatchers("/api/auth/**").permitAll()
+                                .requestMatchers("api/auth/**").permitAll()
                                 .anyRequest().authenticated()
                 )
                 .sessionManagement(session -> session

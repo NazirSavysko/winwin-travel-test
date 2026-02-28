@@ -11,10 +11,10 @@ import java.util.UUID;
 @Setter
 @Getter
 @Builder
-@Table(name = "user")
+@Table(name = "users")
 @AllArgsConstructor
 @NoArgsConstructor
-public final class UserEntity {
+public final class User {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;

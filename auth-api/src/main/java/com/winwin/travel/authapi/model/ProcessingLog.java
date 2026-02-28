@@ -21,7 +21,7 @@ public final class ProcessingLog {
 
     @ManyToOne
     @JoinColumn(name = "user_id")
-    private UserEntity user;
+    private User user;
 
     private String inputText;
 

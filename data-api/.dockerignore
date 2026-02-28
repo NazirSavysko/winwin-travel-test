@@ -1,0 +1,18 @@
+# Maven
+target/
+!.mvn/wrapper/maven-wrapper.jar
+.mvn/
+mvnw
+mvnw.cmd
+
+# Tests
+src/test/
+
+# Documentation
+HELP.md
+*.md
+
+# Git
+.git
+.gitignore
+.gitattributes
