@@ -29,19 +29,11 @@ After that:
 To shut everything down:
 `docker-compose down`
 
-## How to test the API (Postman)
+## test the API (Postman)
 
-I added your collection `win-win.postman_collection.json` to the project root. This is the most convenient way to test.
+I added your collection to the project root. This is the most convenient way to test.
 
-1.  Open Postman.
-2.  Click **Import** and select the file `win-win.postman_collection.json`.
-3.  There are 3 ready-made requests:
-
-    *   **register**: Creates a user (example: `nazir@gmail.com`).
-    *   **login**: Logs the user in and returns a token.
-    *   **process**: Sends text for processing.
-
-**Important:** In the `process` request, the `Authorization` header might contain an old token. Don't forget to copy the new token from the `login` response and paste it there (Bearer ...).
+[Download Postman Collection](./win-win.postman_collection.json)
 
 ## If you need curl
 
