@@ -42,17 +42,13 @@ If you're too lazy to open Postman, you can use the console:
 ### 1. Register
 
 ```bash
-curl -X POST http://localhost:8080/api/auth/register \
-  -H "Content-Type: application/json" \
-  -d "{\"email\":\"nazir@gmail.com\",\"password\":\"Nazir228733\"}"
+curl -X POST http://localhost:8080/api/auth/register -H "Content-Type: application/json" -d "{\"email\":\"nazir@gmail.com\",\"password\":\"Nazir228733\"}"
 ```
 
 ### 2. Login
 
 ```bash
-curl -X POST http://localhost:8080/api/auth/login \
-  -H "Content-Type: application/json" \
-  -d "{\"email\":\"nazir@gmail.com\",\"password\":\"Nazir228733\"}"
+curl -X POST http://localhost:8080/api/auth/login  -H "Content-Type: application/json"  -d "{\"email\":\"nazir@gmail.com\",\"password\":\"Nazir228733\"}"
 ```
 Copy the token from the response!
 
@@ -61,10 +57,7 @@ Copy the token from the response!
 Replace `<your_token>` with yours.
 
 ```bash
-curl -X POST http://localhost:8080/api/process \
-  -H "Authorization: Bearer <your_token>" \
-  -H "Content-Type: application/json" \
-  -d "{\"text\":\"privet\"}"
+curl -X POST http://localhost:8080/api/process  -H "Authorization: Bearer <your_token>" -H "Content-Type: application/json"  -d "{\"text\":\"privet\"}"
 ```
 
 **Expected response:**
