@@ -11,7 +11,7 @@ class TransformServiceImplTest {
     void transform_shouldReturnUpperCase() {
         final String input = "hello world";
         final String expected = "HELLO WORLD";
-        final String actual = transformService.transform(input);
+        final String actual = this.transformService.transform(input);
         Assertions.assertEquals(expected, actual);
     }
 }

@@ -39,17 +39,17 @@ class ProcessingLogServiceImplTest {
                 .createdAt(Instant.now())
                 .build();
 
-        Mockito.when(processingLogRepository.save(any(ProcessingLog.class))).thenReturn(expectedLog);
+        Mockito.when(this.processingLogRepository.save(any(ProcessingLog.class))).thenReturn(expectedLog);
 
         // When
-        ProcessingLog result = processingLogService.saveProcessingLog(user, text, resultText);
+        ProcessingLog result = this.processingLogService.saveProcessingLog(user, text, resultText);
 
         // Then
         Assertions.assertNotNull(result);
         Assertions.assertEquals(text, result.getInputText());
         Assertions.assertEquals(resultText, result.getOutputText());
         Assertions.assertEquals(user, result.getUser());
-        Mockito.verify(processingLogRepository).save(any(ProcessingLog.class));
+        Mockito.verify(this.processingLogRepository).save(any(ProcessingLog.class));
     }
 }
 

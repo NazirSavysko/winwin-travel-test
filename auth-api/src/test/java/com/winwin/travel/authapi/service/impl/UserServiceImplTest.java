@@ -28,10 +28,10 @@ class UserServiceImplTest {
         final User user = new User();
         user.setEmail(email);
 
-        Mockito.when(userRepository.findByEmail(email)).thenReturn(Optional.of(user));
+        Mockito.when(this.userRepository.findByEmail(email)).thenReturn(Optional.of(user));
 
         // When
-        final User result = userService.findUserByEmail(email);
+        final User result = this.userService.findUserByEmail(email);
 
         // Then
         Assertions.assertEquals(email, result.getEmail());
@@ -42,10 +42,10 @@ class UserServiceImplTest {
         // Given
         final String email = "notfound@example.com";
 
-        Mockito.when(userRepository.findByEmail(email)).thenReturn(Optional.empty());
+        Mockito.when(this.userRepository.findByEmail(email)).thenReturn(Optional.empty());
 
         // When & Then
-       Assertions.assertThrows(RuntimeException.class, () -> userService.findUserByEmail(email));
+       Assertions.assertThrows(RuntimeException.class, () -> this.userService.findUserByEmail(email));
     }
 }
 

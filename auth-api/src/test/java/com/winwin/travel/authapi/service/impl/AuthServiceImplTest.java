@@ -36,16 +36,16 @@ class AuthServiceImplTest {
         final String password = "password";
         final String encodedPassword = "encodedPassword";
 
-        when(userRepository.findByEmail(email)).thenReturn(Optional.empty());
-        when(passwordEncoder.encode(password)).thenReturn(encodedPassword);
+        when(this.userRepository.findByEmail(email)).thenReturn(Optional.empty());
+        when(this.passwordEncoder.encode(password)).thenReturn(encodedPassword);
 
         // When
-        authService.register(email, password);
+        this.authService.register(email, password);
 
         // Then
-        verify(userRepository).findByEmail(email);
-        verify(passwordEncoder).encode(password);
-        verify(userRepository).save(any(User.class));
+        verify(this.userRepository).findByEmail(email);
+        verify(this.passwordEncoder).encode(password);
+        verify(this.userRepository).save(any(User.class));
     }
 
     @Test
@@ -54,14 +54,14 @@ class AuthServiceImplTest {
         final String email = "test@example.com";
         final String password = "password";
 
-        when(userRepository.findByEmail(email)).thenReturn(Optional.of(new User()));
+        when(this.userRepository.findByEmail(email)).thenReturn(Optional.of(new User()));
 
         // When & Then
-        assertThrows(UserAlreadyExistsException.class, () -> authService.register(email, password));
+        assertThrows(UserAlreadyExistsException.class, () -> this.authService.register(email, password));
 
-        verify(userRepository).findByEmail(email);
-        verify(passwordEncoder, never()).encode(anyString());
-        verify(userRepository, never()).save(any(User.class));
+        verify(this.userRepository).findByEmail(email);
+        verify(this.passwordEncoder, never()).encode(anyString());
+        verify(this.userRepository, never()).save(any(User.class));
     }
 }
 
